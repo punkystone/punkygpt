@@ -26,7 +26,7 @@ func main() {
 	}()
 
 	client.IRCClient.OnPrivateMessage(func(message twitch.PrivateMessage) {
-		if message.Reply.ParentMsgID != "" {
+		if message.Reply != nil {
 			return
 		}
 		trimmedMessage := strings.TrimSpace(message.Message)
