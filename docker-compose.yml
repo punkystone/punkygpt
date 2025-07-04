@@ -1,0 +1,15 @@
+services:
+  punkygpt:
+    container_name: punkygpt
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CLIENT_ID
+      - CLIENT_SECRET
+      - ACCESS_TOKEN
+      - REFRESH_TOKEN
+      - OPENAI_API_KEY
+      - CHAT 
+    volumes:
+      - ./prompt.txt:/prompt.txt:ro
