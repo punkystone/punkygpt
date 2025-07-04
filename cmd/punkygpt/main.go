@@ -10,7 +10,7 @@ import (
 	client "github.com/punkystone/go-twitch-irc"
 )
 
-var chatRegex = regexp.MustCompile(`((?i)@punkygpt),?\s(.+)`)
+var chatRegex = regexp.MustCompile(`^((?i)@punkygpt),?\s(.+)`)
 
 func main() {
 	env, err := internal.CheckEnv()
@@ -26,6 +26,9 @@ func main() {
 	}()
 
 	client.IRCClient.OnPrivateMessage(func(message twitch.PrivateMessage) {
+		if message.Reply.ParentMsgID != "" {
+			return
+		}
 		trimmedMessage := strings.TrimSpace(message.Message)
 		matches := chatRegex.FindAllStringSubmatch(trimmedMessage, -1)
 		if len(matches) == 0 || len(matches[0]) != 3 {
