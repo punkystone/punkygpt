@@ -11,7 +11,7 @@ import (
 )
 
 var chatRegex = regexp.MustCompile(`^((?i)@punkygpt),?\s(.+)`)
-var okayGarminRegex = regexp.MustCompile(`^OKAYGARMIN (erstelle clip|setzte (spiel|titel) auf (.*))`)
+var okayGarminRegex = regexp.MustCompile(`^OKAYGARMIN (erstelle clip|setze (spiel|titel) auf (.*))`)
 
 func main() {
 	env, err := internal.CheckEnv()
